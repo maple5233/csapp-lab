@@ -1,0 +1,34 @@
+08048ad0 <getbuf>:
+ 8048ad0:	55                   	push   %ebp
+ 8048ad1:	89 e5                	mov    %esp,%ebp
+ 8048ad3:	83 ec 28             	sub    $0x28,%esp
+ 8048ad6:	8d 45 e8             	lea    -0x18(%ebp),%eax
+ 8048ad9:	89 04 24             	mov    %eax,(%esp)
+ 8048adc:	e8 df fe ff ff       	call   80489c0 <Gets>
+ 8048ae1:	c9                   	leave  
+ 8048ae2:	b8 01 00 00 00       	mov    $0x1,%eax
+ 8048ae7:	c3                   	ret    
+ 8048ae8:	90                   	nop
+ 8048ae9:	8d b4 26 00 00 00 00 	lea    0x0(%esi,%eiz,1),%esi
+
+08048af0 <validate>:
+ 8048af0:	55                   	push   %ebp
+ 8048af1:	89 e5                	mov    %esp,%ebp
+--
+ 8048dad:	e8 1e fd ff ff       	call   8048ad0 <getbuf>
+ 8048db2:	89 c2                	mov    %eax,%edx
+ 8048db4:	8b 45 fc             	mov    -0x4(%ebp),%eax
+ 8048db7:	3d ef be ad de       	cmp    $0xdeadbeef,%eax
+ 8048dbc:	74 12                	je     8048dd0 <test+0x30>
+ 8048dbe:	c7 04 24 18 98 04 08 	movl   $0x8049818,(%esp)
+ 8048dc5:	e8 8e f9 ff ff       	call   8048758 <puts@plt>
+ 8048dca:	c9                   	leave  
+ 8048dcb:	c3                   	ret    
+ 8048dcc:	8d 74 26 00          	lea    0x0(%esi,%eiz,1),%esi
+ 8048dd0:	3b 15 d4 a1 04 08    	cmp    0x804a1d4,%edx
+ 8048dd6:	74 18                	je     8048df0 <test+0x50>
+ 8048dd8:	89 54 24 04          	mov    %edx,0x4(%esp)
+ 8048ddc:	c7 04 24 83 95 04 08 	movl   $0x8049583,(%esp)
+ 8048de3:	e8 c0 f9 ff ff       	call   80487a8 <printf@plt>
+ 8048de8:	c9                   	leave  
+
